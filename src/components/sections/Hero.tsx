@@ -1,0 +1,121 @@
+"use client";
+
+import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
+
+import { motion } from "framer-motion";
+import { Terminal } from "@/components/ui/Terminal";
+import { Button } from "@/components/ui/Button";
+import { ParticleBackground } from "@/components/canvas/ParticleBackground";
+import { useState, useEffect } from "react";
+import { ChevronRight, Terminal as TerminalIcon } from "lucide-react";
+
+export function Hero() {
+    const [displayText, setDisplayText] = useState("");
+    const fullText = "Building Infrastructure as Art...";
+
+    useEffect(() => {
+        let index = 0;
+        const timer = setInterval(() => {
+            setDisplayText(fullText.slice(0, index));
+            index++;
+            if (index > fullText.length) clearInterval(timer);
+        }, 100);
+        return () => clearInterval(timer);
+    }, []);
+
+    return (
+        <section className="relative h-screen w-full max-w-[100vw] flex items-center justify-center overflow-hidden bg-neutral-950">
+            {/* Background Layer with Beams */}
+            <BackgroundBeams className="z-0" />
+
+            {/* Subtle Particle Overlay */}
+            <div className="absolute inset-0 z-0 opacity-40">
+                <ParticleBackground />
+            </div>
+
+            {/* Content Layer */}
+            <div className="relative z-10 container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <motion.div
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1 }}
+                >
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
+                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-sm font-mono text-gray-400">System Online</span>
+                    </div>
+
+                    <div className="mb-6 font-mono tracking-tighter">
+                        <span className="block text-lg md:text-xl text-neon-green mb-2 tracking-widest">Hello, I&apos;m</span>
+                        <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">
+                            SOMESH PANIGRAHI
+                        </h1>
+                        <span className="block text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-neon-purple to-neon-blue bg-[length:200%_auto] animate-gradient">
+                            DEVOPS ENGINEER
+                        </span>
+                    </div>
+
+                    <p className="text-xl text-gray-400 mb-8 max-w-lg">
+                        Architecting scalable cloud solutions and automating deployment pipelines with precision and style.
+                    </p>
+
+                    <div className="flex gap-4">
+                        <a href="#projects">
+                            <Button variant="primary">
+                                View Projects <ChevronRight className="w-4 h-4" />
+                            </Button>
+                        </a>
+                        <a href="#contact">
+                            <Button variant="secondary">
+                                Contact Me <TerminalIcon className="w-4 h-4" />
+                            </Button>
+                        </a>
+                    </div>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 1, delay: 0.2 }}
+                    className="hidden lg:block relative"
+                >
+                    {/* Decorative elements behind terminal */}
+                    <div className="absolute -inset-4 bg-gradient-to-r from-neon-blue/20 to-neon-purple/20 blur-xl opacity-50 rounded-full" />
+
+                    <Terminal title="portfolio-init.sh">
+                        <div className="space-y-2">
+                            <div className="text-green-400">$ init sequence started</div>
+                            <div className="text-gray-400">&gt; loading modules...</div>
+                            <div className="text-gray-400">&gt; verifying integrity...</div>
+                            <div className="text-neon-blue">&gt; {displayText}<span className="animate-blink">_</span></div>
+
+                            <div className="mt-4 grid grid-cols-2 gap-2 text-xs opacity-70">
+                                <div>
+                                    <span className="text-purple-400">UPTIME:</span> 99.99%
+                                </div>
+                                <div>
+                                    <span className="text-purple-400">CPU:</span> 12%
+                                </div>
+                                <div>
+                                    <span className="text-purple-400">MEMORY:</span> 4.2GB
+                                </div>
+                                <div>
+                                    <span className="text-purple-400">NETWORK:</span> <span className="text-green-400">CONNECTED</span>
+                                </div>
+                            </div>
+                        </div>
+                    </Terminal>
+                </motion.div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <motion.div
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+            >
+                <div className="w-1 h-12 rounded-full bg-gradient-to-b from-transparent via-neon-blue to-transparent" />
+            </motion.div>
+        </section>
+    );
+}
