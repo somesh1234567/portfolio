@@ -19,7 +19,7 @@ const experiences = [
         company: "CET, Bhubaneswar",
         period: "08/2018 - 05/2022",
         description: "Graduated with a strong foundation in computer science principles. Recognized for active participation in technical societies and hackathons.",
-        tech: ["Computer Science", "Engineering"],
+        tech: ["Engineering"],
     },
 ];
 

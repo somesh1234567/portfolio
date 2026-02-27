@@ -4,7 +4,17 @@ import { motion } from "framer-motion";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ExternalLink, Github, Terminal, CheckCircle } from "lucide-react";
 
-const projects = [
+type Project = {
+    id: number;
+    title: string;
+    desc: string;
+    tags: string[];
+    status: string;
+    github?: string;
+    link?: string;
+};
+
+const projects: Project[] = [
     {
         id: 1,
         title: "Golden Path Platform",
@@ -18,6 +28,7 @@ const projects = [
         desc: "Engineered AWS Spot Instance strategy for scalable workloads, slashing infrastructure overhead by 50%.",
         tags: ["AWS", "Cost", "Spot Instances"],
         status: "deployed",
+        github: "https://github.com/somesh1234567/provision-infrastructure",
     },
     {
         id: 3,
@@ -67,8 +78,16 @@ export function Projects() {
                                             <Terminal className="w-6 h-6 text-neon-green" />
                                         </div>
                                         <div className="flex gap-2">
-                                            <a href="#" className="p-2 hover:bg-white/10 rounded-full transition-colors"><Github className="w-5 h-5" /></a>
-                                            <a href="#" className="p-2 hover:bg-white/10 rounded-full transition-colors"><ExternalLink className="w-5 h-5" /></a>
+                                            {project.github && (
+                                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                                                    <Github className="w-5 h-5" />
+                                                </a>
+                                            )}
+                                            {project.link && (
+                                                <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                                                    <ExternalLink className="w-5 h-5" />
+                                                </a>
+                                            )}
                                         </div>
                                     </div>
 

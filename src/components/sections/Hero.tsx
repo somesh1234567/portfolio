@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+
 import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
 
 import { motion } from "framer-motion";
@@ -40,9 +42,26 @@ export function Hero() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1 }}
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
-                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                        <span className="text-sm font-mono text-gray-400">System Online</span>
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-6">
+                        <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ type: "spring", stiffness: 200, damping: 20, delay: 0.2 }}
+                            className="relative w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-neon-blue/50 shadow-[0_0_25px_rgba(0,195,255,0.3)] shrink-0"
+                        >
+                            <Image
+                                src="/profile.jpg"
+                                alt="Somesh Panigrahi"
+                                fill
+                                className="object-cover"
+                                priority
+                            />
+                        </motion.div>
+
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+                            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                            <span className="text-sm font-mono text-gray-400">System Online</span>
+                        </div>
                     </div>
 
                     <div className="mb-6 font-mono tracking-tighter">
