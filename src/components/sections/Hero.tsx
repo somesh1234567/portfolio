@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import profilePic from "../../../public/profile.jpg";
 
 import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
 
@@ -50,11 +51,12 @@ export function Hero() {
                             className="relative w-28 h-28 md:w-36 md:h-36 rounded-full overflow-hidden border-2 border-neon-blue/50 shadow-[0_0_25px_rgba(0,195,255,0.3)] shrink-0"
                         >
                             <Image
-                                src="/profile.jpg"
+                                src={profilePic}
                                 alt="Somesh Panigrahi"
                                 fill
                                 className="object-cover"
                                 priority
+                                unoptimized
                             />
                         </motion.div>
 
