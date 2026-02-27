@@ -56,7 +56,8 @@ export function Hero() {
                                 fill
                                 className="object-cover"
                                 priority
-                                unoptimized
+                                fetchPriority="high"
+                                placeholder="blur"
                             />
                         </motion.div>
 
